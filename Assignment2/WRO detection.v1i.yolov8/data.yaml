@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['greenbox', 'redbox', 'xparking']
+
+roboflow:
+  workspace: danish-cq5li
+  project: wro-detection-47xs2
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/danish-cq5li/wro-detection-47xs2/dataset/1
