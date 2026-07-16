@@ -2,6 +2,43 @@
 
 This assignment trains, exports, and deploys a YOLOv8 model for detecting red and green objects, using a Roboflow dataset and Raspberry Pi deployment with ONNX.
 
+## How the System Works
+
+```mermaid
+flowchart TD
+    subgraph Training["1. Train and export on the computer"]
+        A[Roboflow red and green dataset] --> B[data.yaml]
+        B --> C[Train YOLOv8n]
+        D[yolov8n.pt pretrained model] --> C
+        C --> E[Best trained weights: best.pt]
+        E --> F[Test with detect_laptop.py]
+        E --> G[Export to ONNX]
+        G --> H[best.onnx]
+    end
+
+    subgraph RaspberryPi["2. Run detection on Raspberry Pi"]
+        H --> I[Load model with Ultralytics YOLO]
+        J[USB or CSI camera] --> K[Camera background thread]
+        K --> L[Read latest frame]
+        I --> M[YOLO prediction]
+        L --> M
+        M --> N[Draw boxes, labels, and confidence]
+        N --> O[Encode annotated frame as JPEG]
+        O --> P[Flask MJPEG /stream response]
+        P --> Q[Browser displays live detection]
+        Q --> L
+    end
+
+    subgraph WebRoutes["3. Flask web routes"]
+        R[Browser request] --> S{"Requested route"}
+        S -->|/| T[Return the web page]
+        S -->|/health| U[Return camera status as JSON]
+        S -->|/stream| P
+    end
+```
+
+At runtime, the camera thread continually saves the newest frame. When a browser opens `/stream`, the server repeatedly copies that frame, runs YOLO detection, draws the results, converts the image to JPEG, and sends it as an MJPEG stream. The browser also calls `/health` every four seconds to show whether the camera is available.
+
 ## Configuration
 
 | Item | Recommended value | Notes |
