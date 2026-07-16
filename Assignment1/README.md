@@ -2,6 +2,40 @@
 
 This project detects hands in real time, tracks hand landmarks, and counts how many fingers are raised using MediaPipe and OpenCV.
 
+## How the System Works
+
+```mermaid
+flowchart TD
+    A[Start Finger_count.py] --> B{Model file available?}
+    B -->|No| C[Download hand_landmarker.task]
+    B -->|Yes| D[Open webcam, video, or IP camera]
+    C --> D
+    D --> E[Capture frame]
+    E --> F[Mirror frame and convert BGR to RGB]
+    F --> G[MediaPipe detects up to two hands]
+    G --> H{Hand landmarks found?}
+    H -->|No| M[Show frame and FPS]
+    H -->|Yes| I[Draw 21 landmarks and hand connections]
+    I --> J[Check thumb using joint angles and palm distances]
+    I --> K[Check four fingers using joint angles and tip distance]
+    J --> L[Count raised fingers from 0 to 5]
+    K --> L
+    L --> N[Smooth count using five recent frames]
+    N --> O[Draw hand label and finger count]
+    O --> M
+    M --> P{Q key pressed?}
+    P -->|No| E
+    P -->|Yes| Q[Release camera and close window]
+```
+
+The program processes each camera frame with MediaPipe, evaluates the thumb and four fingers using joint angles and normalized palm distances, and smooths the result over five recent frames to reduce flickering.
+
+## Video Demo
+
+[![Finger-detection and counting demo](finger-detect.gif)](finger-detect.mp4)
+
+The preview plays automatically. Click it to open the full-quality [MP4 video](finger-detect.mp4).
+
 ## What It Does
 
 - Detects one or two hands from a webcam or IP camera stream.
