@@ -39,6 +39,14 @@ flowchart TD
 
 At runtime, the camera thread continually saves the newest frame. When a browser opens `/stream`, the server repeatedly copies that frame, runs YOLO detection, draws the results, converts the image to JPEG, and sends it as an MJPEG stream. The browser also calls `/health` every four seconds to show whether the camera is available.
 
+## Detection Demo
+
+<video src="red_green_detection.mp4" autoplay muted loop controls width="100%">
+  Your browser cannot display this video. Open the demo using the link below.
+</video>
+
+[Open the red and green detection video](red_green_detection.mp4)
+
 ## Configuration
 
 | Item | Recommended value | Notes |
