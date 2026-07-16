@@ -1,4 +1,4 @@
-# YOLOv8 Red and Green Object Detection
+ # YOLOv8 Red and Green Object Detection
 
 This assignment trains, exports, and deploys a YOLOv8 model for detecting red and green objects, using a Roboflow dataset and Raspberry Pi deployment with ONNX.
 
