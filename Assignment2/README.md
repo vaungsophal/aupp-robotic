@@ -41,11 +41,9 @@ At runtime, the camera thread continually saves the newest frame. When a browser
 
 ## Detection Demo
 
-<video src="red_green_detection.mp4" autoplay muted loop controls width="100%">
-  Your browser cannot display this video. Open the demo using the link below.
-</video>
+[![Red and green object-detection demo](red_green_detection.gif)](red_green_detection.mp4)
 
-[Open the red and green detection video](red_green_detection.mp4)
+The preview plays automatically. Click it to open the full-quality [MP4 video](red_green_detection.mp4).
 
 ## Configuration
 

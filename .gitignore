@@ -1,0 +1,21 @@
+# Python virtual environments
+yolo/
+venv/
+.venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Ultralytics / YOLO artifacts
+labels.cache
+yolov8n.pt
+*.onnx
+
+# Training outputs at repo root (final Assignment2 run is kept tracked)
+/runs/
+
+# Old Assignment2 training runs (kept locally, final run train-4 stays tracked)
+Assignment2/runs/detect/train-2/
+Assignment2/runs/detect/train-3/
+Assignment2/runs/train/
